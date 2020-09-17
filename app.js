@@ -56,7 +56,7 @@ nfc.on("reader", (reader) => {
                     })
                       .then((res) => {
                         let kueri = `UPDATE absensi.absen SET lastcheckin='${res.data.data.name}', lastupdate='${res.data.data.time}' WHERE  uid='${msyqData[0].uid}';`;
-                        console.log(kueri);
+                        // console.log(kueri);
                         sql.getConnection((err, conn) => {
                           if (err) {
                             console.log(err.message);
@@ -66,7 +66,7 @@ nfc.on("reader", (reader) => {
                                 console.log(err.message);
                                 conn.release();
                               } else {
-                                console.log(res);
+                                // console.log(res);
                                 conn.release();
                               }
                             });
@@ -99,7 +99,7 @@ nfc.on("reader", (reader) => {
                     })
                       .then((res) => {
                         let kueri = `UPDATE absensi.absen SET lastcheckin='${res.data.data.name}', lastupdate='${res.data.data.time}' WHERE  uid='${msyqData[0].uid}';`;
-                        console.log(kueri);
+                        // console.log(kueri);
                         sql.getConnection((err, conn) => {
                           if (err) {
                             console.log(err.message);
@@ -109,7 +109,7 @@ nfc.on("reader", (reader) => {
                                 console.log(err.message);
                                 conn.release();
                               } else {
-                                console.log(res);
+                                // console.log(res);
                                 conn.release();
                               }
                             });
@@ -152,7 +152,7 @@ nfc.on("reader", (reader) => {
                         })
                           .then((res) => {
                             let kueri = `UPDATE absensi.absen SET lastcheckin='${res.data.data.name}', lastupdate='${res.data.data.time}' WHERE  uid='${msyqData[0].uid}';`;
-                            console.log(kueri);
+                            // console.log(kueri);
                             sql.getConnection((err, conn) => {
                               if (err) {
                                 console.log(err.message);
@@ -162,7 +162,7 @@ nfc.on("reader", (reader) => {
                                     console.log(err.message);
                                     conn.release();
                                   } else {
-                                    console.log(res);
+                                    // console.log(res);
                                     conn.release();
                                   }
                                 });
@@ -195,7 +195,7 @@ nfc.on("reader", (reader) => {
                         })
                           .then((res) => {
                             let kueri = `UPDATE absensi.absen SET lastcheckin='${res.data.data.name}', lastupdate='${res.data.data.time}' WHERE  uid='${msyqData[0].uid}';`;
-                            console.log(kueri);
+                            // console.log(kueri);
                             sql.getConnection((err, conn) => {
                               if (err) {
                                 console.log(err.message);
@@ -205,7 +205,7 @@ nfc.on("reader", (reader) => {
                                     console.log(err.message);
                                     conn.release();
                                   } else {
-                                    console.log(res);
+                                    // console.log(res);
                                     conn.release();
                                   }
                                 });
