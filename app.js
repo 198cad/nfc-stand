@@ -4,16 +4,14 @@ const sql = require("./mysql");
 const axios = require("axios");
 const moment = require("moment");
 require("twix");
-const jarak = 0;
+const jarak = 30;
 
-// console.log(moment().isBetween("2020-9-10 12:00:10", "2010-10-00 12:00:60"));
 var t = moment("2020-01-01 12:00:00").twix("2020-01-01 12:09:00");
 console.log(t.count("minutes"));
 
 nfc.on("reader", (reader) => {
   console.log(reader.reader.name);
   reader.on("card", async (card) => {
-    //
     const kueri = `SELECT * FROM absensi.absen WHERE absensi.absen.uid = '${card.uid}'`;
     sql.getConnection((err, conn) => {
       if (err) {
@@ -21,16 +19,11 @@ nfc.on("reader", (reader) => {
       } else {
         conn.query(kueri, async (err, msyqData) => {
           let range = await moment(msyqData[0].lastupdate).twix(Date.now());
-          // console.log(range.count("minutes"));
-          // console.log(msyqData[0].lastupdate);
-          // console.log(range.count("minutes"));
           if (err) {
             console.log("u have error on mysql after initiated connection ");
             conn.release();
           } else {
             if (msyqData.length !== 0) {
-              // console.log(data[0]);
-
               let token = `token ${msyqData[0].apikey}:${msyqData[0].apisecret}`;
               if (
                 msyqData[0].lastcheckin === "IN" ||
@@ -56,7 +49,6 @@ nfc.on("reader", (reader) => {
                     })
                       .then((res) => {
                         let kueri = `UPDATE absensi.absen SET lastcheckin='${res.data.data.name}', lastupdate='${res.data.data.time}' WHERE  uid='${msyqData[0].uid}';`;
-                        // console.log(kueri);
                         sql.getConnection((err, conn) => {
                           if (err) {
                             console.log(err.message);
@@ -99,7 +91,7 @@ nfc.on("reader", (reader) => {
                     })
                       .then((res) => {
                         let kueri = `UPDATE absensi.absen SET lastcheckin='${res.data.data.name}', lastupdate='${res.data.data.time}' WHERE  uid='${msyqData[0].uid}';`;
-                        // console.log(kueri);
+
                         sql.getConnection((err, conn) => {
                           if (err) {
                             console.log(err.message);
@@ -109,7 +101,6 @@ nfc.on("reader", (reader) => {
                                 console.log(err.message);
                                 conn.release();
                               } else {
-                                // console.log(res);
                                 conn.release();
                               }
                             });
